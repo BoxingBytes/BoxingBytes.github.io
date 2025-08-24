@@ -1,6 +1,8 @@
 title: BoxingBytes
+theme: minima
 description: A blog about intelligence
 url: "https://BoxingBytes.github.io"
+author: "Aguirre Max"
 plugins:
   - jekyll-feed
 markdown: kramdown
