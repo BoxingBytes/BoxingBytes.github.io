@@ -1,0 +1,13 @@
+---
+layout: base
+title: Home
+---
+<h2>Blog Posts</h2>
+<ul>
+    {% for post in site.posts %}
+    <li>
+        <span>{{ post.date | date: "%-d %b %Y" }}</span> &raquo;
+        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+    </li>
+    {% endfor %}
+</ul>
