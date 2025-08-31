@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/assets/css/style.css?v=c5d02b5abf9ae1b82c1a2be1ca00a668db55b240">
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>LSD | BoxingBytes</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="LSD" />
+<meta name="author" content="Aguirre Max" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Following up on my view about exploration, I want to try out a skill discovery algorithm. The big issue with DIAYN is MI based objective which is easily foolable. LSD is promising." />
+<meta property="og:description" content="Following up on my view about exploration, I want to try out a skill discovery algorithm. The big issue with DIAYN is MI based objective which is easily foolable. LSD is promising." />
+<link rel="canonical" href="http://localhost:4000/2025/08/25/lsd.html" />
+<meta property="og:url" content="http://localhost:4000/2025/08/25/lsd.html" />
+<meta property="og:site_name" content="BoxingBytes" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-08-25T00:00:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="LSD" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Aguirre Max"},"dateModified":"2025-08-25T00:00:00+02:00","datePublished":"2025-08-25T00:00:00+02:00","description":"Following up on my view about exploration, I want to try out a skill discovery algorithm. The big issue with DIAYN is MI based objective which is easily foolable. LSD is promising.","headline":"LSD","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2025/08/25/lsd.html"},"url":"http://localhost:4000/2025/08/25/lsd.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <a id="a-title" href="/">
+          <h1>BoxingBytes</h1>
+        </a>
+        <h2>A blog about intelligence</h2>
+
+        <section id="downloads">
+          
+          <a href="https://github.com/BoxingBytes/BoxingBytes.github.io" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <p>Following up on my view about exploration, I want to try out a skill discovery algorithm. The big issue with DIAYN is MI based objective which is easily foolable. LSD is promising.</p>
+
+<p>My goal here is to find good algorithms to get distinct skills. Once done, I’ll try to get working high level strategies by maximizing extrinsic (env) rewards as well.</p>
+
+<p>Here are the results:</p>
+
+<p>videos here</p>
+
+<p>Discrete skills work a bit better since my observations aren’t coordinate-based. Clearly doesn’t work for maze which only has partial obs centered around the agent.</p>
+
+<video controls="" width="500">
+  <source src="/assets/videos/lsd_maze_discrete.mp4" type="video/mp4" />
+</video>
+
+<p>It’s not clear to me wether it’s because of partial obs, or because LSD does succeed at encoding good distance in latent space.</p>
+
+<h1 id="diving-deeper-to-troubleshoot">Diving deeper to troubleshoot</h1>
+
+<p>One of the key insights of LSD is that the learned latent embedding $\delta \phi$ should align with $z$ to receive a higher intrinsic reward. This means that the cosine similarity should close up to 1. Another important point is the Lipschitz-constraint, which mean the spectral norm of every layer should be 1.</p>
+
+<p>After logging those values, spectral norm is ok, but cosine similarity never goes above 0.2-0.3. We can also see high entropy, almost at random. A few reasons and ways to fix this:</p>
+<ul>
+  <li>Entropy might come from the fact that with each agent learning their own skill, on average, they all maximize entropy</li>
+  <li>$\delta \phi$ won’t align perfectly with skills but even low cosine alignment means different skills. Because I see clearly different skills when rendering the convert_circle env, I assume this is it</li>
+  <li>Prioritized replay, which is by default in Puffer, only replay some skills. This might not be something we want in skill discovery part</li>
+  <li>The $\phi$ network isn’t big enough</li>
+</ul>
+
+<p>I’ve tried them all but nothing changes on convert_circle. I guess I won’t see much more on this env and it’ll be hard to see if I improve things or not. Time to switch to something like maze.</p>
+
+<p>With a bigger $\phi$ network, discrete skills, no prioritized replay, still nothing happens in maze. The idea is the observations, being partial around the agent, don’t change enough and because the agent is constrained in some directions in the maze, skill collapse to nothing. Indeed, in a partially observed markov decision process, in the maze environment, two different states might look exactly similar to the agent, and the only difference is that it went right.  One idea would be to use LSTM as $\phi$ network, so that it can differenciate similar-looking states by understanding time-dependency.</p>
+
+<p>This doesn’t seem to do much. In maze the agents still do nothing. In convert_circle I don’t see much of a difference visually.</p>
+
+
+      </section>
+    </div>
+  </body>
+</html>
