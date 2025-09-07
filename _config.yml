@@ -1,6 +1,8 @@
 title: BoxingBytes
 remote_theme: pages-themes/hacker@v0.2.0
-description: A blog about intelligence
+description: |
+  Reinforcement learning (exploration, model-based),
+  solving real-world problems with multi-agent systems (industry, traffic, social)
 url: "https://BoxingBytes.github.io"
 author: "Aguirre Max"
 plugins:
