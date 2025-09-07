@@ -11,19 +11,35 @@ title: Max Aguirre / BoxingBytes
         {% for post in highlighted_posts %}
         <li>
             <span>{{ post.date | date_to_string }}</span>
-            &raquo; <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            &raquo;
+            {% if post.external_url %}
+            <a href="{{ post.external_url }}" target="_blank" rel="noopener">{{ post.title }}</a>
+            {% else %}
+            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            {% endif %}
+            {% if post.description %}
+            <div class="post-description">{{ post.description }}</div>
+            {% endif %}
         </li>
         {% endfor %}
     </ul>
 
     <!-- Publications Section -->
-    <h1>Blog posts</h1>
+    <h1>Publications</h1>
     <ul class="posts">
         {% assign pub_posts = site.posts | where_exp:"post", "post.tags contains 'post'" %}
         {% for post in pub_posts %}
         <li>
             <span>{{ post.date | date_to_string }}</span>
-            &raquo; <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            &raquo;
+            {% if post.external_url %}
+            <a href="{{ post.external_url }}" target="_blank" rel="noopener">{{ post.title }}</a>
+            {% else %}
+            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            {% endif %}
+            {% if post.description %}
+            <div class="post-description">{{ post.description }}</div>
+            {% endif %}
         </li>
         {% endfor %}
     </ul>
@@ -35,7 +51,15 @@ title: Max Aguirre / BoxingBytes
         {% for post in project_posts %}
         <li>
             <span>{{ post.date | date_to_string }}</span>
-            &raquo; <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            &raquo;
+            {% if post.external_url %}
+            <a href="{{ post.external_url }}" target="_blank" rel="noopener">{{ post.title }}</a>
+            {% else %}
+            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            {% endif %}
+            {% if post.description %}
+            <div class="post-description">{{ post.description }}</div>
+            {% endif %}
         </li>
         {% endfor %}
     </ul>

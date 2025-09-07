@@ -1,0 +1,13 @@
+--- 
+--- 
+
+@import "{{ site.theme }}";
+
+.post-description {
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 5px;
+    margin-left: 8em;
+    font-style: italic;
+    line-height: 1.4;
+}

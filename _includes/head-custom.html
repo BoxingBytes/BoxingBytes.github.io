@@ -1,4 +1,24 @@
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script>
+    window.MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)']],       // inline math
+            displayMath: [['\\[', '\\]']],      // display math
+            packages: {
+                '[+]': ['base', 'ams', 'amsmath', 'amscd', 'amssymb', 'newcommand', 'noerrors', 'color', 'boldsymbol']
+            },
+            tags: 'ams',                        // use automatic equation numbering
+            processEscapes: true,               // process \$ and \( in text
+            processEnvironments: true           // process \begin{...}\end{...}
+        },
+        options: {
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+            ignoreHtmlClass: 'no-mathjax'
+        }
+    };
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+
 {% if site.google_analytics %}
 <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
 <script>

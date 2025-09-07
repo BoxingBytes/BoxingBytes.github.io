@@ -1,11 +1,17 @@
 title: BoxingBytes
 remote_theme: pages-themes/cayman@v0.2.0
 description: |
-  Reinforcement learning (exploration, model-based),
-  solving real-world problems with multi-agent systems (industry, traffic, social)
+  I’m a student focused on research in reinforcement learning and 
+  multi-agent systems. My interests include exploration and model-based RL, 
+  as well as applying multi-agent approaches to real-world problems.
 url: "https://BoxingBytes.github.io"
 author: "Aguirre Max"
 google_analytics: G-1X549WT3V1
 plugins:
   - jekyll-feed
   - jekyll-remote-theme
+repository: BoxingBytes/BoxingBytes.github.io
+github:
+  repository_url: https://github.com/BoxingBytes/BoxingBytes.github.io
+  repository_name: BoxingBytes.github.io
+  owner_name: BoxingBytes
