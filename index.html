@@ -4,10 +4,39 @@ title: Blog
 ---
 
 <div id="home">
-    <h1>Blog Posts</h1>
+    <!-- Highlighted Section -->
+    <h1>Highlighted</h1>
     <ul class="posts">
-        {% for post in site.posts %}
-        <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
+        {% assign highlighted_posts = site.posts | where_exp:"post", "post.tags contains 'highlight'" %}
+        {% for post in highlighted_posts %}
+        <li>
+            <span>{{ post.date | date_to_string }}</span>
+            &raquo; <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <!-- Publications Section -->
+    <h1>Blog posts</h1>
+    <ul class="posts">
+        {% assign pub_posts = site.posts | where_exp:"post", "post.tags contains 'post'" %}
+        {% for post in pub_posts %}
+        <li>
+            <span>{{ post.date | date_to_string }}</span>
+            &raquo; <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <!-- Projects Section -->
+    <h1>Projects</h1>
+    <ul class="posts">
+        {% assign project_posts = site.posts | where_exp:"post", "post.tags contains 'project'" %}
+        {% for post in project_posts %}
+        <li>
+            <span>{{ post.date | date_to_string }}</span>
+            &raquo; <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        </li>
         {% endfor %}
     </ul>
 </div>
