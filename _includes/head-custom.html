@@ -1,3 +1,105 @@
+<!-- Universal Dark Mode Toggle (Works with any Jekyll theme) -->
+<style>
+    :root[data-theme="light"] {
+        --bg-color: #ffffff;
+        --text-color: #333333;
+        --link-color: #0366d6;
+        --border-color: #e1e4e8;
+        --header-bg: linear-gradient(120deg, #155799, #159957);
+    }
+
+    :root[data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --link-color: #58a6ff;
+        --border-color: #21262d;
+        --header-bg: linear-gradient(120deg, #1f2937, #111827);
+    }
+
+    [data-theme="dark"] body {
+        background-color: var(--bg-color) !important;
+        color: var(--text-color) !important;
+    }
+
+    [data-theme="dark"] .main-content,
+    [data-theme="dark"] .page-header {
+        background: var(--header-bg) !important;
+        color: var(--text-color) !important;
+    }
+
+    [data-theme="dark"] .main-content h1,
+    [data-theme="dark"] .main-content h2,
+    [data-theme="dark"] .main-content h3,
+    [data-theme="dark"] .main-content h4 {
+        color: var(--text-color) !important;
+    }
+
+    [data-theme="dark"] .posts a {
+        color: var(--link-color) !important;
+    }
+
+    /* Toggle Button */
+    .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: var(--link-color);
+        color: var(--bg-color);
+        border: 2px solid var(--link-color);
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        cursor: pointer;
+        font-size: 20px;
+        z-index: 1000;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .theme-toggle:hover {
+        transform: scale(1.1);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Smooth transitions for everything */
+    * {
+        transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    }
+</style>
+
+<script>
+    // Initialize theme
+    (function () {
+        const theme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', theme);
+    })();
+
+    // Toggle function
+    function toggleTheme() {
+        const current = document.documentElement.getAttribute('data-theme');
+        const newTheme = current === 'dark' ? 'light' : 'dark';
+
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+
+        // Update button icon
+        const button = document.querySelector('.theme-toggle');
+        button.innerHTML = newTheme === 'dark' ? '☀️' : '🌙';
+    }
+
+    // Set initial icon when page loads
+    document.addEventListener('DOMContentLoaded', function () {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const button = document.querySelector('.theme-toggle');
+        if (button) {
+            button.innerHTML = currentTheme === 'dark' ? '☀️' : '🌙';
+        }
+    });
+</script>
+
 <script>
     window.MathJax = {
         tex: {
