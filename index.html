@@ -1,11 +1,11 @@
 ---
 layout: default
-title: Blog
+title: Max Aguirre / BoxingBytes
 ---
 
 <div id="home">
     <!-- Highlighted Section -->
-    <h1>Highlighted</h1>
+    <h1>Highlights</h1>
     <ul class="posts">
         {% assign highlighted_posts = site.posts | where_exp:"post", "post.tags contains 'highlight'" %}
         {% for post in highlighted_posts %}

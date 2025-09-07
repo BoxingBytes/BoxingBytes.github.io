@@ -1,10 +1,11 @@
 title: BoxingBytes
-remote_theme: pages-themes/hacker@v0.2.0
+remote_theme: pages-themes/cayman@v0.2.0
 description: |
   Reinforcement learning (exploration, model-based),
   solving real-world problems with multi-agent systems (industry, traffic, social)
 url: "https://BoxingBytes.github.io"
 author: "Aguirre Max"
+google_analytics: G-1X549WT3V1
 plugins:
   - jekyll-feed
   - jekyll-remote-theme
