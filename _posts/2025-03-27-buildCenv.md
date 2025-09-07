@@ -486,14 +486,9 @@ python demo.py --env cpr --mode train
 
 Make sure to create a .ini config file in config/ocean/. Take example on the others to setup which model, hyperparams and timestemps you want to train for.
 
-Here is mine after 300m steps of training a basic RNN using PPO:
+Here is mine after 300m steps of training a basic RNN using PPO (click on the image):
 
 [![Watch the video](https://img.youtube.com/vi/xlB48DEiVso/0.jpg)](https://www.youtube.com/watch?v=xlB48DEiVso)
-
-<iframe width="560" height="315" 
-  src="https://www.youtube.com/watch?v=xlB48DEiVso" 
-  frameborder="0" allowfullscreen>
-</iframe>
 
 # Conclusion
 We clearly see that the agents end up depleting the food completely. There are a couple directions to solve for that, namely:
