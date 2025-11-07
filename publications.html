@@ -1,0 +1,51 @@
+---
+layout: default
+title: Publications
+---
+
+<div class="section-page">
+    <h1>Publications</h1>
+    <p class="section-description">Professional publications and collaborative work</p>
+
+    <ul class="posts">
+        {% assign pub_posts = site.posts | where_exp:"post", "post.tags contains 'publication'" %}
+        {% for post in pub_posts %}
+        <li>
+            <span class="post-date">{{ post.date | date_to_string }}</span>
+            &raquo;
+            {% if post.external_url %}
+            <a href="{{ post.external_url }}" target="_blank" rel="noopener">{{ post.title }}</a>
+            {% else %}
+            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            {% endif %}
+            {% if post.description %}
+            <div class="post-description">{{ post.description }}</div>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+
+    {% if pub_posts.size == 0 %}
+    <p>No publications yet.</p>
+    {% endif %}
+</div>
+
+<style>
+    .publications-intro {
+        background: #fff7ed;
+        padding: 1.5rem;
+        border-radius: 8px;
+        margin-bottom: 2rem;
+        border-left: 4px solid #f59e0b;
+    }
+
+    [data-theme="dark"] .publications-intro {
+        background: #1c2128;
+    }
+
+    .publications-intro p {
+        margin: 0;
+        font-size: 1.05rem;
+        line-height: 1.6;
+    }
+</style>

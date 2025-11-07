@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "EverRAG"
-description: "Transform your Evernote into an intelligent, searchable database."
-redirect_to: "https://github.com/BoxingBytes/EverRAG"
+title: "Harvest Commons"
+description: "A minimal MARL society to study emergence of behaviors"
+redirect_to: "https://github.com/BoxingBytes/PufferLib/tree/3.0/pufferlib/ocean/predprey"
 tags: 
     - project
 ---

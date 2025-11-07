@@ -1,0 +1,52 @@
+---
+layout: default
+title: Projects
+---
+
+<div class="section-page">
+    <h1>Projects</h1>
+    <p class="section-description">Independent research projects and ongoing work in multi-agent reinforcement learning
+    </p>
+
+    <ul class="posts">
+        {% assign project_posts = site.posts | where_exp:"post", "post.tags contains 'project'" %}
+        {% for post in project_posts %}
+        <li>
+            <span class="post-date">{{ post.date | date_to_string }}</span>
+            &raquo;
+            {% if post.external_url %}
+            <a href="{{ post.external_url }}" target="_blank" rel="noopener">{{ post.title }}</a>
+            {% else %}
+            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            {% endif %}
+            {% if post.description %}
+            <div class="post-description">{{ post.description }}</div>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+
+    {% if project_posts.size == 0 %}
+    <p>No projects yet.</p>
+    {% endif %}
+</div>
+
+<style>
+    .projects-intro {
+        background: #f7f0f7;
+        padding: 1.5rem;
+        border-radius: 8px;
+        margin-bottom: 2rem;
+        border-left: 4px solid #8b5cf6;
+    }
+
+    [data-theme="dark"] .projects-intro {
+        background: #1c2128;
+    }
+
+    .projects-intro p {
+        margin: 0;
+        font-size: 1.05rem;
+        line-height: 1.6;
+    }
+</style>

@@ -1,8 +1,10 @@
 ---
-layout: default
+layout: post
 title: PufferLib+Vast.AI setup tutorial
 tags: 
-    - post
+    - blog
+    - writing
+    - highlight
 ---
 
 Reinforcement Learning is hard, and most environment setups are wonky, slow, too expensive to run, or can only run a handfull of environments. 

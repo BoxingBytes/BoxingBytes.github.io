@@ -1,7 +1,9 @@
 ---
-layout: default
+layout: post
 title: Building the Harvest Commons — a minimal MARL society in C
 tags:
+    - blog
+    - writing
     - highlight
 ---
 

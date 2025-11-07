@@ -1,8 +1,9 @@
 ---
-layout: default
+layout: post
 title: Making a fast RL env in C with pufferlib
 tags: 
-    - post
+    - blog
+    - writing
 ---
 
 # Goal for this article

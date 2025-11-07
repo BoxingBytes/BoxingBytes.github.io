@@ -1,0 +1,114 @@
+---
+layout: default
+---
+
+<article class="post">
+    <header class="post-header">
+        <h1 class="post-title">{{ page.title }}</h1>
+        <p class="post-meta">
+            <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %d, %Y" }}</time>
+            {% if page.author %} • <span>{{ page.author }}</span>{% endif %}
+        </p>
+    </header>
+
+    <div class="post-content">
+        {{ content }}
+    </div>
+
+    {% if page.tags %}
+    <div class="post-tags">
+        <strong>Tags:</strong>
+        {% for tag in page.tags %}
+        <span class="tag">{{ tag }}</span>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if page.external_url %}
+    <div class="external-link">
+        <a href="{{ page.external_url }}" target="_blank" rel="noopener">View Project →</a>
+    </div>
+    {% endif %}
+</article>
+
+<style>
+    .post {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .post-header {
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid #159957;
+    }
+
+    .post-title {
+        color: #159957;
+        margin-bottom: 0.5rem;
+    }
+
+    .post-meta {
+        color: #666;
+        font-size: 0.95rem;
+    }
+
+    .post-content {
+        line-height: 1.8;
+        font-size: 1.05rem;
+    }
+
+    .post-tags {
+        margin-top: 2rem;
+        padding-top: 1rem;
+        border-top: 1px solid #e1e4e8;
+    }
+
+    .tag {
+        display: inline-block;
+        background: #f0f7f4;
+        padding: 0.25rem 0.75rem;
+        margin: 0.25rem;
+        border-radius: 4px;
+        font-size: 0.9rem;
+        color: #159957;
+    }
+
+    .external-link {
+        margin-top: 2rem;
+        text-align: center;
+    }
+
+    .external-link a {
+        display: inline-block;
+        padding: 0.75rem 1.5rem;
+        background: #159957;
+        color: white !important;
+        text-decoration: none;
+        border-radius: 6px;
+        font-weight: 500;
+        transition: background 0.3s ease;
+    }
+
+    .external-link a:hover {
+        background: #0d7a3d;
+    }
+
+    /* Dark mode */
+    [data-theme="dark"] .post-title {
+        color: #3fb950;
+    }
+
+    [data-theme="dark"] .post-meta {
+        color: #8b949e;
+    }
+
+    [data-theme="dark"] .post-tags {
+        border-top-color: #21262d;
+    }
+
+    [data-theme="dark"] .tag {
+        background: #1c2128;
+        color: #3fb950;
+    }
+</style>

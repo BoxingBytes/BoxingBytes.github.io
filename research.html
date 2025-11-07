@@ -1,0 +1,56 @@
+---
+layout: default
+title: Research - Paper Implementations
+---
+
+<div class="section-page">
+    <h1>Research</h1>
+    <p class="section-description">Implementation of key papers in reinforcement learning and multi-agent systems</p>
+
+    <ul class="posts">
+        {% assign research_posts = site.posts | where_exp:"post", "post.tags contains 'research'" %}
+        {% if research_posts.size == 0 %}
+        {% comment %}Fallback: Show posts with specific research-related keywords{% endcomment %}
+        {% assign research_posts = site.posts | where_exp:"post", "post.tags contains 'post'" %}
+        {% endif %}
+
+        {% for post in research_posts %}
+        <li>
+            <span class="post-date">{{ post.date | date_to_string }}</span>
+            &raquo;
+            {% if post.external_url %}
+            <a href="{{ post.external_url }}" target="_blank" rel="noopener">{{ post.title }}</a>
+            {% else %}
+            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            {% endif %}
+            {% if post.description %}
+            <div class="post-description">{{ post.description }}</div>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+
+    {% if research_posts.size == 0 %}
+    <p>Research implementations coming soon.</p>
+    {% endif %}
+</div>
+
+<style>
+    .research-intro {
+        background: #f0f7f4;
+        padding: 1.5rem;
+        border-radius: 8px;
+        margin-bottom: 2rem;
+        border-left: 4px solid #159957;
+    }
+
+    [data-theme="dark"] .research-intro {
+        background: #1c2128;
+    }
+
+    .research-intro p {
+        margin: 0;
+        font-size: 1.05rem;
+        line-height: 1.6;
+    }
+</style>

@@ -1,8 +1,9 @@
 ---
-layout: default
+layout: post
 title: Policy evaluation in Reinforcement Learning - understanding eligibility traces
 tags: 
-    - post
+    - blog
+    - writing
 ---
 
 In Reinforcement Learning, what seems to be a powerful tool, the eligibility trace TD(λ), as described in [Reinforcement Learning: An Introduction](https://web.stanford.edu/class/psych209/Readings/SuttonBartoIPRLBook2ndEd.pdf) in Chapter 12.2, is a way of mixing TD(0) bootstraping with Monte-Carlo methods. It seems to be providing good flexibility and several improvements in theory. Yet, in most state of the art RL algorithms, such as [PPO](https://arxiv.org/abs/1707.06347), it is not used. In this article, we will learn what is the eligibility trace TD(λ), how it fits in the Reinforcement Learning framework, and try to answer the question: Why isn’t this method used in state of the arts algorithms?

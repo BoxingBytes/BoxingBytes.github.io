@@ -1,0 +1,63 @@
+---
+layout: default
+title: Writing - Blog & Technical Posts
+---
+
+<div class="section-page">
+    <h1>Writing</h1>
+    <p class="section-description">Blog posts and technical writing about my projects and research insights</p>
+
+    <div class="writing-intro">
+        <p>I write about my learning journey, technical challenges, and insights from working on RL projects. These
+            posts combine theory with practical implementation details.</p>
+    </div>
+
+    <ul class="posts">
+        {% assign all_posts = site.posts | where_exp:"post", "post.tags contains 'blog'" %}
+        {% assign writing_posts = site.posts | where_exp:"post", "post.tags contains 'writing'" %}
+        {% assign blog_posts = all_posts | concat: writing_posts | uniq | sort: 'date' | reverse %}
+        {% if blog_posts.size == 0 %}
+        {% comment %}Fallback: Show all posts{% endcomment %}
+        {% assign blog_posts = site.posts %}
+        {% endif %}
+
+        {% for post in blog_posts %}
+        <li>
+            <span class="post-date">{{ post.date | date_to_string }}</span>
+            &raquo;
+            {% if post.external_url %}
+            <a href="{{ post.external_url }}" target="_blank" rel="noopener">{{ post.title }}</a>
+            {% else %}
+            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            {% endif %}
+            {% if post.description %}
+            <div class="post-description">{{ post.description }}</div>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+
+    {% if blog_posts.size == 0 %}
+    <p>Blog posts coming soon.</p>
+    {% endif %}
+</div>
+
+<style>
+    .writing-intro {
+        background: #f0f4f7;
+        padding: 1.5rem;
+        border-radius: 8px;
+        margin-bottom: 2rem;
+        border-left: 4px solid #3e6994;
+    }
+
+    [data-theme="dark"] .writing-intro {
+        background: #1c2128;
+    }
+
+    .writing-intro p {
+        margin: 0;
+        font-size: 1.05rem;
+        line-height: 1.6;
+    }
+</style>

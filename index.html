@@ -5,63 +5,44 @@ title: Max Aguirre / BoxingBytes
 
 <div id="home">
     <button class="theme-toggle" onclick="toggleTheme()" title="Toggle dark/light mode">🌙</button>
-    <!-- Highlighted Section -->
-    <h1>Highlights</h1>
-    <ul class="posts">
-        {% assign highlighted_posts = site.posts | where_exp:"post", "post.tags contains 'highlight'" %}
-        {% for post in highlighted_posts %}
-        <li>
-            <span>{{ post.date | date_to_string }}</span>
-            &raquo;
-            {% if post.external_url %}
-            <a href="{{ post.external_url }}" target="_blank" rel="noopener">{{ post.title }}</a>
-            {% else %}
-            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-            {% endif %}
-            {% if post.description %}
-            <div class="post-description">{{ post.description }}</div>
-            {% endif %}
-        </li>
-        {% endfor %}
-    </ul>
 
-    <!-- Publications Section -->
-    <h1>Publications</h1>
-    <ul class="posts">
-        {% assign pub_posts = site.posts | where_exp:"post", "post.tags contains 'post'" %}
-        {% for post in pub_posts %}
-        <li>
-            <span>{{ post.date | date_to_string }}</span>
-            &raquo;
-            {% if post.external_url %}
-            <a href="{{ post.external_url }}" target="_blank" rel="noopener">{{ post.title }}</a>
-            {% else %}
-            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-            {% endif %}
-            {% if post.description %}
-            <div class="post-description">{{ post.description }}</div>
-            {% endif %}
-        </li>
-        {% endfor %}
-    </ul>
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="hero-visual">
+            <video width="100%" preload="auto" muted controls playsinline autoplay>
+                <source src="{{ '/assets/videos/commons/v0_solved_opt.mp4' | relative_url }}" type="video/mp4">
+            </video>
+            <p class="video-caption">Agents survive in a multi-agent harvest environment</p>
+        </div>
+    </div>
 
-    <!-- Projects Section -->
-    <h1>Projects</h1>
-    <ul class="posts">
-        {% assign project_posts = site.posts | where_exp:"post", "post.tags contains 'project'" %}
-        {% for post in project_posts %}
-        <li>
-            <span>{{ post.date | date_to_string }}</span>
-            &raquo;
-            {% if post.external_url %}
-            <a href="{{ post.external_url }}" target="_blank" rel="noopener">{{ post.title }}</a>
-            {% else %}
-            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-            {% endif %}
-            {% if post.description %}
-            <div class="post-description">{{ post.description }}</div>
-            {% endif %}
-        </li>
-        {% endfor %}
-    </ul>
+    <!-- About Me Section -->
+    <section class="about-section">
+        <h2>About Me</h2>
+        <p class="about-text">{{ site.description }}</p>
+    </section>
+
+    <!-- Highlights Section (Only section on home page) -->
+    <section class="home-section">
+        <div class="section-header">
+            <h2>Highlights</h2>
+        </div>
+        <ul class="posts">
+            {% assign highlighted_posts = site.posts | where_exp:"post", "post.tags contains 'highlight'" %}
+            {% for post in highlighted_posts %}
+            <li>
+                <span class="post-date">{{ post.date | date_to_string }}</span>
+                &raquo;
+                {% if post.external_url %}
+                <a href="{{ post.external_url }}" target="_blank" rel="noopener">{{ post.title }}</a>
+                {% else %}
+                <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                {% endif %}
+                {% if post.description %}
+                <div class="post-description">{{ post.description }}</div>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+    </section>
 </div>

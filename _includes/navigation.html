@@ -1,0 +1,16 @@
+<!-- Navigation Bar -->
+<nav class="main-nav">
+    <div class="nav-container">
+        <a href="{{ '/' | relative_url }}" class="nav-brand">Max Aguirre</a>
+        <ul class="nav-links">
+            <li><a href="{{ '/' | relative_url }}" {% if page.url=="/" %}class="active" {% endif %}>Home</a></li>
+            <li><a href="{{ '/highlights/' | relative_url }}" {% if page.url=="/highlights/" %}class="active" {% endif
+                    %}>Highlights</a></li>
+            <li><a href="{{ '/publications/' | relative_url }}" {% if page.url=="/publications/" %}class="active" {%
+                    endif %}>Publications</a></li>
+            <li><a href="{{ '/projects/' | relative_url }}" {% if page.url=="/projects/" %}class="active" {% endif
+                    %}>Projects</a></li>
+            <li><a href="mailto:max.aguirre2424b@gmail.com">Contact</a></li>
+        </ul>
+    </div>
+</nav>

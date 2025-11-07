@@ -1,15 +1,218 @@
---- 
---- 
+---
+---
 
 @import "{{ site.theme }}";
 
+/* ===== NAVIGATION BAR ===== */
+.main-nav {
+    background: linear-gradient(120deg, #155799, #159957);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.nav-container {
+    max-width: 64rem;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+}
+
+.nav-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff !important;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+.nav-brand:hover {
+    opacity: 0.8;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 2rem;
+}
+
+.nav-links li {
+    margin: 0;
+}
+
+.nav-links a {
+    color: rgba(255, 255, 255, 0.9) !important;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    padding: 0.5rem 0;
+    border-bottom: 2px solid transparent;
+}
+
+.nav-links a:hover {
+    color: #fff !important;
+    border-bottom-color: #fff;
+}
+
+/* Mobile Navigation */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        height: auto;
+        padding: 1rem;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-top: 1rem;
+        text-align: center;
+    }
+}
+
+/* ===== DARK MODE FOR NAVIGATION ===== */
+[data-theme="dark"] .main-nav {
+    background: linear-gradient(120deg, #1f2937, #111827);
+}
+
+/* ===== HERO SECTION ===== */
+.hero-section {
+    text-align: center;
+    margin: 2rem 0 3rem 0;
+}
+
+.hero-visual {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.video-caption {
+    margin-top: 0.75rem;
+    font-size: 0.95rem;
+    color: #666;
+    font-style: italic;
+    text-align: center;
+}
+
+/* ===== ABOUT SECTION ===== */
+.about-section {
+    max-width: 800px;
+    margin: 3rem auto;
+    padding: 2rem;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    border-left: 5px solid #159957;
+}
+
+.about-section h2 {
+    color: #159957;
+    font-size: 2rem;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.about-text {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #333;
+    text-align: left;
+    margin: 0;
+}
+
+/* ===== SECTION STYLING ===== */
+.home-section {
+    margin: 3rem 0;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #159957;
+    padding-bottom: 0.5rem;
+}
+
+.section-header h2 {
+    margin: 0;
+    color: #159957;
+}
+
+.view-all {
+    color: #159957 !important;
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.3s ease;
+}
+
+.view-all:hover {
+    opacity: 0.7;
+}
+
+/* ===== SECTION PAGE STYLING ===== */
+.section-page {
+    margin: 2rem 0;
+}
+
+.section-page h1 {
+    color: #159957;
+    margin-bottom: 0.5rem;
+}
+
+.section-description {
+    color: #666;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    font-style: italic;
+}
+
+/* ===== POST LIST STYLING ===== */
+.posts {
+    list-style: none;
+    padding: 0;
+}
+
+.posts li {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-left: 4px solid #159957;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.posts li:hover {
+    transform: translateX(5px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.post-date {
+    display: inline-block;
+    min-width: 7em;
+    color: #666;
+    font-weight: 500;
+}
+
 .posts a {
-    color: #159958 !important; /* e.g., #333333 for dark gray */
+    color: #159958 !important;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.posts a:hover {
+    text-decoration: underline;
 }
 
 /* External links (keep blue) */
 .posts a[target="_blank"] {
-    color: #3e6994 !important; /* Blue for external links */
+    color: #3e6994 !important;
 }
 
 .post-description {
@@ -21,3 +224,40 @@
     line-height: 1.4;
 }
 
+/* ===== DARK MODE ADJUSTMENTS ===== */
+[data-theme="dark"] .hero-section h1,
+[data-theme="dark"] .section-header h2,
+[data-theme="dark"] .section-page h1 {
+    color: #159957;
+}
+
+[data-theme="dark"] .about-section {
+    background: linear-gradient(135deg, #1c2128 0%, #161b22 100%);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .about-section h2 {
+    color: #3fb950;
+}
+
+[data-theme="dark"] .about-text {
+    color: #c9d1d9;
+}
+
+[data-theme="dark"] .video-caption {
+    color: #8b949e;
+}
+
+[data-theme="dark"] .hero-tagline,
+[data-theme="dark"] .section-description {
+    color: #c9d1d9;
+}
+
+[data-theme="dark"] .posts li {
+    background: #161b22;
+}
+
+[data-theme="dark"] .post-date,
+[data-theme="dark"] .post-description {
+    color: #8b949e;
+}
