@@ -1,37 +1,22 @@
 ---
 layout: post
-title: Building the Harvest Commons — a minimal MARL society in C
+title: Building a minimal multi agent society
 tags:
     - blog
     - writing
     - highlight
 ---
 
-# Goal for this article
+I introduce the first version of a multi-agent environment built in C and built on top of [pufferlib](https://puffer.ai/). This environment is designed to explore how agents survive, compete & cooperate in a complex environment across different incentives. I already wrote about a barebone version of this [here]({% post_url 2025-03-27-buildCenv %}). This time, I intend to gradually evolve the environment. 
 
-The goal of this post is to introduce the first version of **Harvest Commons**, a multi-agent environment built in C and interfaced through [pufferlib](https://puffer.ai/). This environment is designed to explore how agents survive, compete, and cooperate when facing a shared renewable resource — a simplified simulation of a **common-pool resource economy**. I already did implement & wrote about a barebone version of this. This time, I intend to gradually evolve the environment. 
-
-We’ll start small: four agents, one biome, one regrowing resource, one rule — don’t die.
+This can be applied to a wide range of real-world problems. In video-games, you might want to evolve a stable, rich environment where NPCS have organic behaviors. In smart-city, economy, logistics, you can simulate your system and look at what incentives produces the desire behaviour. This can be used to study the emergence of collective intelligence, and more.
 
 # The Core Problem 
 
-Imagine four agents dropped into a world with limited, regenerating food. They need energy to survive, but the food grows slowly. Do they:
+We’ll start small: four agents, one regrowing resource, one rule — don’t die. They are dropped into a world with limited resources. They need energy to survive, but the food grows slowly. Under what incentives do they manage to find a stable system, where every agent get its own share of the resource without depleting the environment? What solutions do these agents find to inherent problems of this world?   
 
-* Coordinate to harvest sustainably?
-* Compete and deplete the resource?
-* Free-ride while others do the work?
-
-This mirrors real-world dilemmas: fisheries, forests, public infrastructure.
-
-# The idea
-
-The Harvest Commons is a minimal world to study **emergent cooperation** and **resource sustainability**.  
-Each agent loses 1 HP per step, and dies at 0 HP.  
-To survive, agents must **collect food**, store it, and **eat** when needed.  
-Food regrows over time in its biome, but can be depleted if agents overharvest.
-
-This setup creates a simple tension: should an agent act greedily now, or conserve resources for later?  
-The environment is intentionally minimal to isolate survival dynamics before adding social mechanisms.
+Each agent loses 1 HP per step, and dies at 0 HP. To survive, agents must **collect food**, store it, and **eat** when needed.
+Food regrows over time in its biome, but can be depleted if agents overharvest. The environment is intentionally minimal to isolate survival dynamics before adding social mechanisms.
 
 # Mechanics
 
@@ -41,14 +26,11 @@ The environment is intentionally minimal to isolate survival dynamics before add
 | **Agents** | 4 agents with position, HP, inventory, and ID. |
 | **Food** | Regrows probabilistically each step in its corresponding biome.|
 | **Inventory** | Agents must store food before they can eat it. |
-| **HP system** | HP decreases each turn, increases when eating (+10 HP). Max HP is 100. |
+| **HP system** | HP decreases each turn, increases when eating (+20 HP). Max HP is 100. |
 | **Stealing** | Agents can steal another agent's food from its inventory if facing it. |
 | **Reward** | Very sparse: only −1 for dying (no positive reward yet). |
 | **Actions** | Each agent can: Move up/down/left/right, stay idle, eat food, or interact (collect food or steal) |
 | **Observations** | Agents have a vision of 3 around them. For each tile they see the type, and if it's an agent, the HP and food in its inventory. |
-
-
-A minimal setup like this allows us to study *pure emergence*: can a policy network learn to stay alive and harvest sustainably with no explicit guidance?
 
 # Rendering
 
@@ -80,11 +62,10 @@ Another interesting observation is the steal ratio:
 
 ![steal_curves](/assets/images/commons/v0_stealing_curves.png)
 
-Stealing is only available when one agent is facing another agent. When an agent steal, it gets the other agent's entire inventory. The y-axis is in %/100.I called that stealing, but this can also be thought as a collaborative strategy because it can help feed an agent that is starving. However, in this setup, it is purely competitive, as the reward is only -1 on death. Surprinsingly, score and steal curve seems to align. I'm not sure why, but it means the more agent steal, the more each agent seems to survive on average. 
+Stealing is only available when one agent is facing another agent. When an agent steal, it gets the other agent's entire inventory. The y-axis is percent.I called that stealing, but this can also be thought as a collaborative strategy because it can help feed an agent that is starving. I'm not sure why, but it means the more agent steal, the more each agent seems to survive on average. 
 
-# Why this setup?
+# Next
 
-When do agents learn to cooperate purely from environmental constraints? No hand-crafted reward for "being nice." Just survival.
 This environment is the foundation for more complex mechanics:
 
 * Energy systems (sleep, fatigue)
@@ -92,18 +73,7 @@ This environment is the foundation for more complex mechanics:
 * Multi-home dynamics (territorial behavior)
 * Trading and reputation (social structures)
 
-But first, I need to understand what incentives make a stable society possible.
-
-# Next
-
-In the next post, I'll share results from training with sparse rewards and explore different incentive structures:
-
-What happens with pure survival pressure?
-Do denser rewards help or hurt coordination?
-Can we find a reward that leads to sustainable harvesting?
-
-The goal is simple: find the minimal incentive structure that produces intelligent, cooperative behavior.
-Stay tuned.
+But first, I need to understand what can make those runs stable. This is what I'll explore in the next post.
 
 # Fun bonus
 

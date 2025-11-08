@@ -5,7 +5,6 @@ description: "A website enabling the reproduction of all figures from <a href='h
 redirect_to: "https://codpybook-read-the-docs.readthedocs.io/en/latest/index.html"
 tags: 
     - publication
-    - highlight
 ---
 
 <script>
