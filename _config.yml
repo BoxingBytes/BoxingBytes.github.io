@@ -1,9 +1,10 @@
 title: BoxingBytes
 remote_theme: pages-themes/cayman@v0.2.0
 description: |
-  I’m a student working on reinforcement learning and 
+  I'm a student working on reinforcement learning and 
   multi-agent systems. My research explores the emergence of cooperation and intelligence in simulated societies. Ultimately, my goal is to understand how collective intelligence arises from individuals, and how these insights can guide real-world systems.
 url: "https://BoxingBytes.github.io"
+baseurl: ""
 author: "Aguirre Max"
 google_analytics: G-1X549WT3V1
 plugins:
